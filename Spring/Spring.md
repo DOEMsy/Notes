@@ -336,7 +336,7 @@ public class TestDI {
 
   * 然后创建工厂实例并调用创建方法
 
-    ```java
+    ```xml
     <!--创建实例工厂-->
     <bean id="TestFactoryID" class="com.itheima.c_inject.c_factory.TestFactory"></bean>
     <!--获得UserService
