@@ -6,7 +6,7 @@
 
 # Spring 概述
 
-* Spring核心：**控制反转(IOC)**和**面向切面(AOP)**
+* Spring核心：**控制反转(IoC)**和**面向切面(AOP)**
 
 ### 优点
 
@@ -26,7 +26,33 @@
 
 
 
-# 入门案例 IOC
+# 入门案例 IoC(控制反转)
+
+将类扔到Spring容器里面，创建新对象再拿出来
+
+- Spring容器 ： `application`Context 配置文件
+
+  - 配置 <bean>
+    - id ： 引用的时候用的名称
+    - class : 装载的类名称
+
+- 从容器取出类：
+
+  - 首先得到目标容器
+
+    ```java
+    ApplicationContext testContext = new ClassPathXmlApplicationContext(beansxmlPath);
+    ```
+
+  - 再从容器中取出类赋予对象（需要强转）
+
+    ```java
+    UserService test2 = (UserService) testContext.getBean("UserServiceID"); 
+    ```
+
+和将类扔到字典(dict)里差不多
+
+
 
 ### 1.导入4+1 jar包
 
@@ -46,7 +72,7 @@
 
 ### 2.目标类
 
-* 提供UserService接口实现类
+* 提供UserService接口和实现类
 
 * 获得UserService实例
 
@@ -130,28 +156,104 @@ public class TestIOC {
 
 
 
-# IOC理解
 
-将类扔到Spring容器里面，创建新对象再拿出来
 
-* Spring容器 ： `application`Context 配置文件
 
-  * 配置 <bean>
-    * id ： 引用的时候用的名称
-    * class : 装载的类名称
 
-* 从容器取出类：
+# 入门案例 DI(依赖注入)
 
-  * 首先得到目标容器
+* 依赖
 
-    ```java
-    ApplicationContext testContext = new ClassPathXmlApplicationContext(beansxmlPath);
-    ```
+  * is a: **继承  **子类继承父类，子类就是父类
 
-  * 再从容器中取出类赋予对象（需要强转）
+  * has a:  **依赖**  B的成员变量中有A  ->  B依赖A 
+
+    * 既一个对象需要使用另一个对象
 
     ```java
-    UserService test2 = (UserService) testContext.getBean("UserServiceID"); 
+    class B_class{
+        private A_class a;//B依赖A
+    }
     ```
 
-和将类扔到字典(dict)里差不多
+* 注入：通过 setter 方法进行依赖对象实例的设置
+
+  ```java
+  class BookServiceImpl{
+      //之前开发 接口 = 实现类
+      private BookDao bookDao = new BookDaoImpl();
+      //Spring开发
+      private BookDao;
+      setter方法注入BookDao
+  }
+  ```
+
+  ![1564999775001](Spring.assets/1564999775001.png)
+
+  <property>设置为<bean>的子标签
+
+### 1.目标类
+
+* Dao
+
+  ```java
+  public class BookDaoImpl implements BookDao {
+      @Override
+      public void addBook() {
+          System.out.println("di  add book");
+      }
+  }
+  ```
+
+  
+
+* Service
+
+  ```java
+  public class BookServiceImpl implements BookService {
+      //1 原方法 接口 = 实现类
+      private BookDao bookDao1 = new BookDaoImpl();
+  
+      //2 Spring方法  接口+setter方法
+      private BookDao bookDao2;
+      public void setBookDao2(BookDao bookDao2) {//setter方法
+          this.bookDao2 = bookDao2;
+      }
+  
+      @Override
+      public void addBook() {
+          this.bookDao1.addBook();
+          this.bookDao2.addBook();
+      }
+  }
+  ```
+
+  * 原方法中  bookDao1与类是绑定的关系
+  * Spring方法中  通过Setter() 可以改变绑定的bookDao2
+
+### 2.配置文件
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <!--
+        模拟Spring执行过程
+            创建service实例                 ->Ioc <bean>
+            创建dao实例                     ->Ioc
+            将dao注入service （setter()）   ->DI  <property>
+
+            <property> 用于属性注入
+            name:bean的属性名， 通过setter获得
+            ref: 依赖的id值
+        -->
+        <bean id="BookServiceID" class="com.itheima.b_di.BookServiceImpl">
+            <property name="bookDao2" ref="BookDaoID"></property>
+        </bean>
+        <bean id="BookDaoID" class="com.itheima.b_di.BookDaoImpl"></bean>
+
+</beans>
+```
+
+### 3.测试

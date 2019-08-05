@@ -15,9 +15,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin File" />
-        <option value="spring-beans.schema" />
         <option value="FxmlFile" />
+        <option value="Interface" />
         <option value="Class" />
+        <option value="spring-beans.schema" />
       </list>
     </option>
   </component>
@@ -33,12 +34,17 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.itheima.b_di" />
+    </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.itheima.b_di" />
       <recent name="com.itheima.a_ioc" />
     </key>
   </component>
@@ -54,9 +60,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TestIOC (1)">
+  <component name="RunManager" selected="JUnit.TestIOC (2)">
     <configuration name="TestIOC (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Spring_IOC_test" />
+      <module name="Spring_test" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.itheima.a_ioc.*" />
@@ -65,6 +71,21 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.itheima.a_ioc" />
       <option name="MAIN_CLASS_NAME" value="com.itheima.a_ioc.TestIOC" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestIOC (2)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Spring_test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.itheima.b_di.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.itheima.b_di" />
+      <option name="MAIN_CLASS_NAME" value="com.itheima.b_di.TestIOC" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -103,6 +124,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestIOC (2)" />
         <item itemvalue="JUnit.TestIOC (1)" />
         <item itemvalue="JUnit.TestIOC.demo01" />
         <item itemvalue="JUnit.TestIOC" />
@@ -124,13 +146,14 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d0ba0f93-c5bf-441d-8197-7a5a6b273692" name="Default Changelist" comment="" />
+      <changelist id="50af43fd-5cf7-49d4-9acf-61106ba4b6e1" name="默认的" comment="" />
       <created>1564989091161</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1564989091161</updated>
       <workItem from="1564989094176" duration="330000" />
       <workItem from="1564989470484" duration="7175000" />
+      <workItem from="1564998002081" duration="2859000" />
     </task>
     <servers />
   </component>
