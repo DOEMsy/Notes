@@ -345,4 +345,24 @@ public class TestDI {
     <bean id="UserServiceID" factory-bean="TestFactoryID" factory-method="createService"></bean>
     ```
 
-    
+
+
+### 2.Bean的种类
+
+* 普通Bean
+
+  ```xml
+  <bean id="" class=""></bean>
+  ```
+
+* FactoryBean : 具有工厂生产对象的能力，只能生产**特定的对象**
+
+  * 必须使用Factory接口，提供方法getObject() 用于提供**特定的bean**
+  * AOP使用
+
+  
+
+### 3.作用域
+
+![1565006509574](Spring.assets/1565006509574.png)
+
