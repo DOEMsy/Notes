@@ -6,7 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.applet.AppletContext;
 
-public class TestIOC {
+public class TestIoC {
     @Test       //声明测试，则不需要写main
     public void demo01(){
         //之前获取实例

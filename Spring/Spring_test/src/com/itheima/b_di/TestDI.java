@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class TestIOC {
+public class TestDI {
     @Test       //声明测试，则不需要写main？？？
     public void demo00(){
         ApplicationContext testContext = new ClassPathXmlApplicationContext("com/itheima/b_di/beans.xml");

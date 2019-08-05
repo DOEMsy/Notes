@@ -17,8 +17,8 @@
         <option value="Kotlin File" />
         <option value="FxmlFile" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="spring-beans.schema" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -34,12 +34,17 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/com/itheima/c_inject/c_factory" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\GitHs\Notes\Spring\Spring_test\src\com\itheima\c_inject\c_factory" />
+      <recent name="E:\GitHs\Notes\Spring\Spring_test\src\com\itheima\c_inject\b_static_factory" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.itheima.b_di" />
     </key>
@@ -60,23 +65,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TestIOC (2)">
-    <configuration name="TestIOC (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Spring_test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.itheima.a_ioc.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.itheima.a_ioc" />
-      <option name="MAIN_CLASS_NAME" value="com.itheima.a_ioc.TestIOC" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestIOC (2)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.Testi">
+    <configuration name="TestDI" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Spring_test" />
       <extension name="coverage">
         <pattern>
@@ -85,14 +75,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.itheima.b_di" />
-      <option name="MAIN_CLASS_NAME" value="com.itheima.b_di.TestIOC" />
+      <option name="MAIN_CLASS_NAME" value="com.itheima.b_di.TestDI" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestIOC" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="IDEA-work" />
+    <configuration name="TestIoC" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Spring_test" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.itheima.a_ioc.*" />
@@ -100,14 +90,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.itheima.a_ioc" />
-      <option name="MAIN_CLASS_NAME" value="com.itheima.a_ioc.TestIOC" />
+      <option name="MAIN_CLASS_NAME" value="com.itheima.a_ioc.TestIoC" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestIOC.demo01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="IDEA-work" />
+    <configuration name="TestIoC" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Spring_test" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.itheima.a_ioc.*" />
@@ -115,19 +105,50 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.itheima.a_ioc" />
-      <option name="MAIN_CLASS_NAME" value="com.itheima.a_ioc.TestIOC" />
+      <option name="MAIN_CLASS_NAME" value="com.itheima.a_ioc.TestIoC" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestIoC.demo01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Spring_test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.itheima.a_ioc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.itheima.a_ioc" />
+      <option name="MAIN_CLASS_NAME" value="com.itheima.a_ioc.TestIoC" />
       <option name="METHOD_NAME" value="demo01" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Testi" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Spring_test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.itheima.c_inject.b_static_factory.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.itheima.c_inject.b_static_factory" />
+      <option name="MAIN_CLASS_NAME" value="com.itheima.c_inject.b_static_factory.Testi" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestIOC (2)" />
-        <item itemvalue="JUnit.TestIOC (1)" />
-        <item itemvalue="JUnit.TestIOC.demo01" />
-        <item itemvalue="JUnit.TestIOC" />
+        <item itemvalue="JUnit.Testi" />
+        <item itemvalue="JUnit.TestDI" />
+        <item itemvalue="JUnit.TestIoC" />
+        <item itemvalue="JUnit.TestIoC.demo01" />
+        <item itemvalue="JUnit.TestIoC" />
       </list>
     </recent_temporary>
   </component>
@@ -153,7 +174,7 @@
       <updated>1564989091161</updated>
       <workItem from="1564989094176" duration="330000" />
       <workItem from="1564989470484" duration="7175000" />
-      <workItem from="1564998002081" duration="2859000" />
+      <workItem from="1564998002081" duration="5803000" />
     </task>
     <servers />
   </component>

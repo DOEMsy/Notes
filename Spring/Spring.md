@@ -1,9 +1,5 @@
 # Spring 框架
 
-> 给各位表演四小时速成Spring
->
-> (上面催项目了，然而目前还啥也不会)
-
 # Spring 概述
 
 * Spring核心：**控制反转(IoC)**和**面向切面(AOP)**
@@ -26,7 +22,7 @@
 
 
 
-# 入门案例 IoC(控制反转)
+# IoC(控制反转)
 
 将类扔到Spring容器里面，创建新对象再拿出来
 
@@ -160,7 +156,7 @@ public class TestIOC {
 
 
 
-# 入门案例 DI(依赖注入)
+# DI(依赖注入)
 
 * 依赖
 
@@ -257,3 +253,96 @@ public class TestIOC {
 ```
 
 ### 3.测试
+
+```java
+public class TestDI {
+    @Test       //声明测试，则不需要写main？？？
+    public void demo00(){
+        ApplicationContext testContext = new ClassPathXmlApplicationContext("com/itheima/b_di/beans.xml");
+        BookService test1 = (BookService) testContext.getBean("BookServiceID");
+        test1.addBook();
+    }
+}
+```
+
+
+
+# 核心API
+
+![1565002254459](Spring.assets/1565002254459.png)
+
+* ##### BeanFactory ：生成任意的bean ，*采用延迟加载，只有在第一次getBean的时候才会实例化Bean*
+
+* ##### **ApplicationContext** ：BeanFactory的子接口，功能更强（强大就完事了），当配置文件被加载就对象实例化
+
+  * **ClassPathXmlApplicationContext** 用于加载classpath(src)下的指定的xml
+
+    * xml运行时位置 –> /WEB-INF/classes/…xml
+
+  * FileSystemXmlApplicationContext 用于加载指定盘符路径下的xml
+
+    * xml运行时位置 –> /WEB-INF/…xml
+    * 通过java web -> ServletContext.getRealPath() 获得盘符路径
+
+  * **getBean **:获取实例
+
+    ```java
+    //获取后强制转换
+    UserService test2 = (UserService) testContext.getBean("UserServiceID");
+    //提前告知类型
+    UserService test2 = testContext.getBean("UserServiceID",UserService.class);
+    ```
+
+    
+
+# 装配Bean基于XML
+
+### 1.实例化方式
+
+* 默认构造
+
+  ```xml
+  <bean id="" class=""></bean>
+  ```
+
+* 静态工厂
+
+  * 常用于Spring整合其他框架
+
+    * 用于生产实例对象，所有方法必须是static
+    * 将其他框架的东西交给Spring，将会具有Bean的所有特性
+
+  * 搭建静态工厂：
+
+    ```java
+    public class TestBeanFactory {
+        public static UserService createService(){	//创建实例的静态方法
+            return new UserServiceImpl();
+        }
+    }
+    ```
+
+  ```xml
+  <bean id="" class=工厂的全限定类名（包名+类名） factry-method=静态方法></bean>
+  ```
+
+* 实例工厂
+
+  * 必须先有工厂的实例对象，然后通过实例对象去创建对象
+
+    * 所有的方法都是非静态的
+
+  * 工厂交给Spring
+
+  * 然后创建工厂实例并调用创建方法
+
+    ```java
+    <!--创建实例工厂-->
+    <bean id="TestFactoryID" class="com.itheima.c_inject.c_factory.TestFactory"></bean>
+    <!--获得UserService
+        创建实例工厂并调用创建对象方法
+    -->
+    <bean id="UserServiceID" factory-bean="TestFactoryID" factory-method="createService"></bean>
+    ```
+
+    
