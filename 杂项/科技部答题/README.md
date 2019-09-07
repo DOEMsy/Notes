@@ -177,7 +177,7 @@
             if(l<=mid)
                 insert(l,mid,w,k*2);
             if(mid+1<=r)
-                insert(mid+1,r,w,k*2+1);
+                update(mid+1,r,w,k*2+1);
             nodes[k].w = nodes[k*2].w+nodes[k*2+1].w;
         }
     }
@@ -186,16 +186,16 @@
   * 查询
 
     ```c++
-    int search(int l,int r,int k = 0){
+    int Inquire(int l,int r,int k = 0){
         if(nodes[k].l==l&&nodes[k].r==r)
             return nodes[k].w;
         else{
             int mid = (nodes[k].l+nodes[k].r)/2;
             int lw = 0,rw = 0;
             if(l<=mid)
-                lw = search(l,mid,k*2);
+                lw = Inquire(l,mid,k*2);
             if(mid+1<=r)
-                rw = search(mid+1,r,k*2+1);
+                rw = Inquire(mid+1,r,k*2+1);
             return lw+rw;
         }
     }
