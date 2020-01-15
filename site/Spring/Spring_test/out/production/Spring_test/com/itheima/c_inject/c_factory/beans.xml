@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <!--创建实例工厂-->
+        <bean id="TestFactoryID" class="com.itheima.c_inject.c_factory.TestFactory"></bean>
+        <!--获得UserService
+                创建实例工厂并调用创建对象方法
+        -->
+        <bean id="UserServiceID" factory-bean="TestFactoryID" factory-method="createService"></bean>
+
+</beans>

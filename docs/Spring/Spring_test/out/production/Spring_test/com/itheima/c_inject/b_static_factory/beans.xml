@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <!--将静态工厂创建的实例交于Spring-->
+        <!--在取出实例的时候将调用静态工厂的创建方法-->
+        <bean id="UserServiceID" class="com.itheima.c_inject.b_static_factory.TestStaticFactory" factory-method="createService"></bean>
+
+</beans>

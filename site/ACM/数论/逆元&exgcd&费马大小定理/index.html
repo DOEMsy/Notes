@@ -1,0 +1,1542 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="快乐人和他的快乐朋友们">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../book">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
+    
+    
+      
+        <title>逆元 & exgcd & 费马 - Msy's Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.1b62728e.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ef5350">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.268332fc.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,400i,700%7CFira+Mono&display=fallback">
+        <style>body,input{font-family:"Fira Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+      <link rel="manifest" href="../../../manifest.webmanifest">
+    
+    
+      <link rel="stylesheet" href="../../../_static/css/extra.css">
+    
+      <link rel="stylesheet" href="../../../_static/css/han.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="red" data-md-color-accent="red">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#exgcd" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../.." title="Msy's Notes" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">book</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Msy's Notes
+            </span>
+            <span class="md-header-nav__topic">
+              
+                逆元 & exgcd & 费马
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." class="md-tabs__link">
+        Welcome to Msy's Notes
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../板子扩充/" class="md-tabs__link md-tabs__link--active">
+          ACM
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../Spring/" class="md-tabs__link">
+          Spring
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../杂项/Typora 语法结构与功能/" class="md-tabs__link">
+          杂项
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../组原/1.运算方法和运算器/" class="md-tabs__link">
+          组原
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../../.." title="Msy's Notes" class="md-nav__button md-logo">
+      
+        <i class="md-icon">book</i>
+      
+    </a>
+    Msy's Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Welcome to Msy's Notes" class="md-nav__link">
+      Welcome to Msy's Notes
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      ACM
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        ACM
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../板子扩充/" title="板子扩充" class="md-nav__link">
+      板子扩充
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      Dp
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        Dp
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dp/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      其他
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        其他
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../其他/快读挂/" title="快读挂" class="md-nav__link">
+      快读挂
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      博弈论
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        博弈论
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../博弈论/巴什博弈/" title="巴什博弈" class="md-nav__link">
+      巴什博弈
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      字符串
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        字符串
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../字符串/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      思维
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-6">
+        思维
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../思维/思维型例题/" title="思维型题" class="md-nav__link">
+      思维型题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-7" type="checkbox" id="nav-2-7">
+    
+    <label class="md-nav__link" for="nav-2-7">
+      数据结构
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-7">
+        数据结构
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../数据结构/线段树/" title="线段树" class="md-nav__link">
+      线段树
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8" type="checkbox" id="nav-2-8" checked>
+    
+    <label class="md-nav__link" for="nav-2-8">
+      数论
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-8">
+        数论
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../组合数取模/" title="组合数" class="md-nav__link">
+      组合数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        逆元 & exgcd & 费马
+      </label>
+    
+    <a href="./" title="逆元 & exgcd & 费马" class="md-nav__link md-nav__link--active">
+      逆元 & exgcd & 费马
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    乘法逆元（倒数）
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    费马小定理求逆元
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    扩展欧几里得求逆元
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    线性求逆元
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1123n123n-pp" class="md-nav__link">
+    1.一次性求出1,2,3,...,n1,2,3,...,n中每个数关于 pp 的逆元
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2n" class="md-nav__link">
+    2.求任意n个数的逆元
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    乘法逆元应用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    裴蜀定理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    扩展欧几里得
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xyxy" class="md-nav__link">
+    扩展欧几里得求解 x,yx,y
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    扩展欧几里得算法的迭代形式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    扩展欧几里得计算乘法逆元
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    费马小定理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    费马大定理
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8-3" type="checkbox" id="nav-2-8-3">
+    
+    <label class="md-nav__link" for="nav-2-8-3">
+      简单数论
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-8-3">
+        简单数论
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../简单数论/同余定理/" title="同余定理" class="md-nav__link">
+      同余定理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../简单数论/快速幂/" title="快速幂（求余）" class="md-nav__link">
+      快速幂（求余）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../简单数论/构造勾股数/" title="构造勾股数" class="md-nav__link">
+      构造勾股数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../简单数论/欧几里得/" title="欧几里得" class="md-nav__link">
+      欧几里得
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../简单数论/欧拉筛/" title="欧拉筛" class="md-nav__link">
+      欧拉筛
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../简单数论/约瑟夫环/" title="约瑟夫环" class="md-nav__link">
+      约瑟夫环
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../简单数论/进制转换/" title="进制转换" class="md-nav__link">
+      进制转换
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-9" type="checkbox" id="nav-2-9">
+    
+    <label class="md-nav__link" for="nav-2-9">
+      线性
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-9">
+        线性
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../线性/简单线性（板）/" title="简单线性（板）" class="md-nav__link">
+      简单线性（板）
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Spring
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Spring
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Spring/" title="Spring 框架" class="md-nav__link">
+      Spring 框架
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      杂项
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        杂项
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Typora 语法结构与功能
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        Typora 语法结构与功能
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../杂项/Typora 语法结构与功能/" title="Typora 语法结构与功能" class="md-nav__link">
+      Typora 语法结构与功能
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      科技部答题
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        科技部答题
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../杂项/科技部答题/" title="网络与系统" class="md-nav__link">
+      网络与系统
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      组原
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        组原
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../组原/1.运算方法和运算器/" title="1.运算方法和运算器" class="md-nav__link">
+      1.运算方法和运算器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../组原/2.主存储器/" title="2.主存储器" class="md-nav__link">
+      2.主存储器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../组原/3.指令系统/" title="3.指令系统" class="md-nav__link">
+      3.指令系统
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../组原/4.中央处理器/" title="4.中央处理器" class="md-nav__link">
+      4.中央处理器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../组原/5.存储系统/" title="5.存储系统" class="md-nav__link">
+      5.存储系统
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../组原/6.辅助存储器/" title="6.辅助存储器" class="md-nav__link">
+      6.辅助存储器
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    乘法逆元（倒数）
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    费马小定理求逆元
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    扩展欧几里得求逆元
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    线性求逆元
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1123n123n-pp" class="md-nav__link">
+    1.一次性求出1,2,3,...,n1,2,3,...,n中每个数关于 pp 的逆元
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2n" class="md-nav__link">
+    2.求任意n个数的逆元
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    乘法逆元应用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    裴蜀定理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    扩展欧几里得
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xyxy" class="md-nav__link">
+    扩展欧几里得求解 x,yx,y
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    扩展欧几里得算法的迭代形式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    扩展欧几里得计算乘法逆元
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    费马小定理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    费马大定理
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="exgcd">逆元 &amp; exgcd &amp; 费马<a class="headerlink" href="#exgcd" title="Permanent link">&para;</a></h1>
+<h2 id="_1">乘法逆元（倒数）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>如果 <span><span class="MathJax_Preview">ab≡1\pmod p</span><script type="math/tex">ab≡1\pmod p</script></span> 且 <strong><span><span class="MathJax_Preview">gcd(a,p)=1</span><script type="math/tex">gcd(a,p)=1</script></span></strong> 则 <span><span class="MathJax_Preview">b</span><script type="math/tex">b</script></span> 为 <span><span class="MathJax_Preview">a</span><script type="math/tex">a</script></span> 关于模 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 的乘法逆元（已知 <span><span class="MathJax_Preview">a,p</span><script type="math/tex">a,p</script></span> 求 <span><span class="MathJax_Preview">b</span><script type="math/tex">b</script></span> )</p>
+<h3 id="_2">费马小定理求逆元<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>若 <span><span class="MathJax_Preview">gcd(a,p)=1</span><script type="math/tex">gcd(a,p)=1</script></span> , 则  <span><span class="MathJax_Preview">a^{(p-1)} ≡ 1 \pmod p</span><script type="math/tex">a^{(p-1)} ≡ 1 \pmod p</script></span> 既 <span><span class="MathJax_Preview">a*a^{p-2}≡1\pmod p</span><script type="math/tex">a*a^{p-2}≡1\pmod p</script></span></p>
+<p><span><span class="MathJax_Preview">a^{p-2}</span><script type="math/tex">a^{p-2}</script></span>即为所求，此时应用快速幂即可</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">ll</span> <span class="nf">inv</span><span class="p">(</span><span class="n">ll</span> <span class="n">a</span><span class="p">,</span><span class="n">ll</span> <span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">qpow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">p</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="n">p</span><span class="p">);</span> <span class="c1">//a^(p-2) mod p</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="_3">扩展欧几里得求逆元<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>因 <span><span class="MathJax_Preview">ab≡1\pmod p</span><script type="math/tex">ab≡1\pmod p</script></span> </p>
+<p><span><span class="MathJax_Preview">ab\bmod p≡1</span><script type="math/tex">ab\bmod p≡1</script></span></p>
+<p><span><span class="MathJax_Preview">ab+kp≡1,k=-ab\bmod p</span><script type="math/tex">ab+kp≡1,k=-ab\bmod p</script></span></p>
+<p>写成裴蜀方程 <span><span class="MathJax_Preview">ba+kp=1,gcd(a,p)=1</span><script type="math/tex">ba+kp=1,gcd(a,p)=1</script></span></p>
+<p>再利用扩展欧几里得算法求解 <span><span class="MathJax_Preview">b,k</span><script type="math/tex">b,k</script></span></p>
+</blockquote>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="nf">inv</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">exgcd</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">%</span> <span class="n">p</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">p</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="_4">线性求逆元<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h5 id="1123n123n-pp">1.一次性求出<span><span class="MathJax_Preview">1,2,3,...,n</span><script type="math/tex">1,2,3,...,n</script></span>中每个数关于 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 的逆元<a class="headerlink" href="#1123n123n-pp" title="Permanent link">&para;</a></h5>
+<p>如果对于每个数进行单次求解，以上两种方法就显得慢了，很有可能超时。</p>
+<p><img alt="image-20200111163503208" src="../逆元&amp;exgcd&amp;费马大小定理.assets/image-20200111163503208.png" /></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">inv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> 
+    <span class="n">inv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span><span class="p">)(</span><span class="n">p</span> <span class="o">-</span> <span class="n">p</span> <span class="o">/</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">inv</span><span class="p">[</span><span class="n">p</span> <span class="o">%</span> <span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="n">p</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<h5 id="2n">2.求任意n个数的逆元<a class="headerlink" href="#2n" title="Permanent link">&para;</a></h5>
+<p><img alt="image-20200111163826427" src="../逆元&amp;exgcd&amp;费马大小定理.assets/image-20200111163826427.png" /></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="n">p</span><span class="p">;</span>
+<span class="n">sv</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">qpow</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">p</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+<span class="c1">// 当然这里也可以用 exgcd 来求逆元,视个人喜好而定.</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span> <span class="n">sv</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="n">p</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">inv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">%</span> <span class="n">p</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="_5">乘法逆元应用<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>做题时如果结果过大一般都会让你模一个数，确保结果不是很大，而这个数一般是1e9+7，而且这个数又是个素数，加减乘与模运算的顺序交换不会影响结果，<strong>但是除法不行</strong>。</li>
+<li>有的题目要求结果mod一个大质数，如果原本的结果中有除法，<strong>比如除以a,那就可以乘以a的逆元替代。</strong>（除一个数等于乘它的倒数，虽然这里的逆元不完全是倒数，但可以这么理解，毕竟乘法逆元就是倒数的扩展）。</li>
+</ul>
+<hr />
+<h2 id="_6">裴蜀定理<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>对于不完全为 0 的非负整数 <span><span class="MathJax_Preview">a,b</span><script type="math/tex">a,b</script></span>，必然存在整数对 <span><span class="MathJax_Preview">x,y</span><script type="math/tex">x,y</script></span> 使得<span><span class="MathJax_Preview">gcd（a，b）=ax+by（或m*gcd（a，b）=ax+by,m=1,2,3,..)</span><script type="math/tex">gcd（a，b）=ax+by（或m*gcd（a，b）=ax+by,m=1,2,3,..)</script></span></p>
+</li>
+<li>
+<p>裴蜀有解时必然有无穷多个整数解，求解 <span><span class="MathJax_Preview">x,y</span><script type="math/tex">x,y</script></span> 使用<strong>扩展欧几里得定理</strong></p>
+</li>
+<li>特别的 <span><span class="MathJax_Preview">ax+by=1</span><script type="math/tex">ax+by=1</script></span>有整数解 <span><span class="MathJax_Preview">x,y</span><script type="math/tex">x,y</script></span> 当且仅当 <span><span class="MathJax_Preview">gcd(a,b)=1</span><script type="math/tex">gcd(a,b)=1</script></span></li>
+</ul>
+<hr />
+<h2 id="_7">扩展欧几里得<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<ul>
+<li>裴蜀定理：对于不完全为 0 的非负整数 <span><span class="MathJax_Preview">a，b</span><script type="math/tex">a，b</script></span>，必然存在整数对  <span><span class="MathJax_Preview">x，y</span><script type="math/tex">x，y</script></span>，满足他们的贝祖（裴蜀）等式使得<span><span class="MathJax_Preview">gcd（a，b）=ax+by（或m*gcd（a，b）=ax+by,m=1,2,3,..)</span><script type="math/tex">gcd（a，b）=ax+by（或m*gcd（a，b）=ax+by,m=1,2,3,..)</script></span></li>
+</ul>
+<h3 id="xyxy">扩展欧几里得求解 <span><span class="MathJax_Preview">x,y</span><script type="math/tex">x,y</script></span><a class="headerlink" href="#xyxy" title="Permanent link">&para;</a></h3>
+<ul>
+<li>在欧几里得算法里，递归部分的核心是这样的<span><span class="MathJax_Preview">gcd(a,b) = gcd(b,\bmod b)=gcd(b,a-b\frac{a}{b})</span><script type="math/tex">gcd(a,b) = gcd(b,\bmod b)=gcd(b,a-b\frac{a}{b})</script></span>，我们将由此得出与 x，y 相关的递归关系。</li>
+<li>根据裴蜀定理，我们可以找到四个整数<span><span class="MathJax_Preview">x,y,x',y'</span><script type="math/tex">x,y,x',y'</script></span>，使得  <span><span class="MathJax_Preview">ax+by=gcd(a,b)</span><script type="math/tex">ax+by=gcd(a,b)</script></span> 且  <span><span class="MathJax_Preview">bx'+(a-\frac{a}{b})y'=gcd(b,a-b\frac{a}{b})</span><script type="math/tex">bx'+(a-\frac{a}{b})y'=gcd(b,a-b\frac{a}{b})</script></span></li>
+<li>这两个等式的右侧是相等的，于是我们得到：<span><span class="MathJax_Preview">ax+by = bx'+(a-b\frac{a}{b})y'</span><script type="math/tex">ax+by = bx'+(a-b\frac{a}{b})y'</script></span>，整理一下就是<span><span class="MathJax_Preview">a(x-y')+b(y-(x'-\frac{a}{b}y'))=0</span><script type="math/tex">a(x-y')+b(y-(x'-\frac{a}{b}y'))=0</script></span></li>
+<li>我们希望这个等式对一切 a，b 都成立，于是<span><span class="MathJax_Preview">x=y', y=x'-\frac{a}{b}y'</span><script type="math/tex">x=y', y=x'-\frac{a}{b}y'</script></span></li>
+<li>这样，要求解 x 和 y，只需要求解 x'，y'，由于 x'，y' 对应的问题规模更小，所以可以进行递归的运算。最后找一下边界条件：当 <span><span class="MathJax_Preview">b=0</span><script type="math/tex">b=0</script></span> 时， <span><span class="MathJax_Preview">gcd(a,0)</span><script type="math/tex">gcd(a,0)</script></span> 对应 <span><span class="MathJax_Preview">x=1,y=0</span><script type="math/tex">x=1,y=0</script></span></li>
+<li>这种算法的思想和欧几里得算法是一致的，而且它在求出最大公约数的同时，求解了一组适于裴蜀定理的系数，所以叫做扩展欧几里得算法。</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="nf">exgcd</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)</span> <span class="k">return</span> <span class="n">exgcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">x1</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">exgcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">-</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">d</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>​       x 和 y 用引用的形式传入，返回值是最大公约数。</p>
+<h3 id="_8">扩展欧几里得算法的迭代形式<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="nf">exgcd</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)</span> <span class="k">return</span> <span class="n">exgcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">,</span> <span class="n">t</span><span class="p">;</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span> <span class="n">m</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">d</span> <span class="o">*</span> <span class="n">t</span><span class="p">;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span> <span class="n">n</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">d</span> <span class="o">*</span> <span class="n">t</span><span class="p">;</span> <span class="n">y</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p><a href="https://zhuanlan.zhihu.com/p/58241990">知乎扩展欧几里得</a></p>
+<h3 id="_9">扩展欧几里得计算乘法逆元<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<ul>
+<li>当我们用扩展欧几里得算法找到一组 x 和 y 满足 <span><span class="MathJax_Preview">ax+by=1</span><script type="math/tex">ax+by=1</script></span>，就可以得出 <span><span class="MathJax_Preview">ax≡1\pmod b</span><script type="math/tex">ax≡1\pmod b</script></span>，也就是说 x 是 a 的乘法逆元，且 <span><span class="MathJax_Preview">gcd(a,x)=1</span><script type="math/tex">gcd(a,x)=1</script></span>。</li>
+<li>显然，如果 x 是 a 的乘法逆元，那么所有的 <img alt="[公式]" src="../逆元&amp;exgcd&amp;费马大小定理.assets/equation-1578715809548.svg" /> 也是 a 的乘法逆元。这表明，一定有 a 的一个乘法逆元在区间 <img alt="[公式]" src="../逆元&amp;exgcd&amp;费马大小定理.assets/equation-1578715809561.svg" /> 内。</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="nf">inv</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">exgcd</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">%</span> <span class="n">p</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">p</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<hr />
+<h2 id="_10">费马小定理<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>若 <span><span class="MathJax_Preview">gcd(a,p)=1</span><script type="math/tex">gcd(a,p)=1</script></span> ，则  <span><span class="MathJax_Preview">a^{(p-1)} ≡ 1 \pmod p</span><script type="math/tex">a^{(p-1)} ≡ 1 \pmod p</script></span></p>
+<p>例：求 <span><span class="MathJax_Preview">2^{100}\bmod 13</span><script type="math/tex">2^{100}\bmod 13</script></span></p>
+<blockquote>
+<p>由费马小定理可得：<span><span class="MathJax_Preview">2^{12} = 1\pmod {13}</span><script type="math/tex">2^{12} = 1\pmod {13}</script></span></p>
+<p>所以原式 = <span><span class="MathJax_Preview">2^{12*8+4} \pmod {13}</span><script type="math/tex">2^{12*8+4} \pmod {13}</script></span></p>
+<p>​             = <span><span class="MathJax_Preview">2^{12*8}*16 \pmod {13}</span><script type="math/tex">2^{12*8}*16 \pmod {13}</script></span></p>
+<p>​             = <span><span class="MathJax_Preview">1*16 \pmod {13}</span><script type="math/tex">1*16 \pmod {13}</script></span></p>
+<p>​             = <span><span class="MathJax_Preview">3</span><script type="math/tex">3</script></span></p>
+</blockquote>
+<hr />
+<h2 id="_11">费马大定理<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p><span><span class="MathJax_Preview">x^n+y^n=z^n</span><script type="math/tex">x^n+y^n=z^n</script></span> 在 <span><span class="MathJax_Preview">n&gt;2</span><script type="math/tex">n>2</script></span> 时没有正整数解</p>
+<p><span><span class="MathJax_Preview">n=2</span><script type="math/tex">n=2</script></span>   勾股定理</p>
+<p><span><span class="MathJax_Preview">n=1</span><script type="math/tex">n=1</script></span>   <span><span class="MathJax_Preview">x+y=z</span><script type="math/tex">x+y=z</script></span></p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../组合数取模/" title="组合数" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                组合数
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../简单数论/同余定理/" title="同余定理" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                同余定理
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.808e90bb.js"></script>
+      
+        
+        
+          
+          <script src="../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+        <script src="../../../_static/js/extra.js?v=16"></script>
+      
+        <script src="https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
